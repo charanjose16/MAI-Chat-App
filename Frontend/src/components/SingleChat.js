@@ -130,7 +130,7 @@ const sendMessage = async (event) => {
  useEffect(() => {
    socket.on("message recieved", (newMessageRecieved) => {
      if (
-       !selectedChatCompare || // if chat is not selected or doesn't match current chat
+       !selectedChatCompare ||
        selectedChatCompare._id !== newMessageRecieved.chat._id
      ) {
        if (!notification.includes(newMessageRecieved)) {
@@ -146,13 +146,13 @@ const sendMessage = async (event) => {
 
    const typingHandler = (e) => {
      setNewMessage(e.target.value);
-
-     if (!socketConnected) return;
+     if (!socketConnected || !selectedChat || !selectedChat._id) return;
 
      if (!typing) {
        setTyping(true);
        socket.emit("typing", selectedChat._id);
      }
+
      let lastTypingTime = new Date().getTime();
      var timerLength = 3000;
      setTimeout(() => {
@@ -164,6 +164,23 @@ const sendMessage = async (event) => {
        }
      }, timerLength);
    };
+   
+   useEffect(() => {
+     socket.on("typing", () => {
+       console.log("Received 'typing' event");
+       setIsTyping(true);
+     });
+     socket.on("stop typing", () => {
+       console.log("Received 'stop typing' event");
+       setIsTyping(false);
+     });
+   }, []);
+
+   useEffect(() => {
+     if (selectedChat) {
+       socket.emit("join chat", selectedChat._id);
+     }
+   }, [selectedChat]);
 
     
   return (
