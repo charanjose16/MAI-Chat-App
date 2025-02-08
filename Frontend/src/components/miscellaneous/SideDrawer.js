@@ -151,6 +151,7 @@ const SideDrawer = () => {
               px="2"
               fontWeight="300"
               fontSize="xl"
+              fontFamily="Work sans"
             >
               Search
             </Text>
@@ -158,12 +159,17 @@ const SideDrawer = () => {
         </Tooltip>
         <Text
           fontSize="2xl"
-          fontFamily="Work sans"
+          fontFamily='Work sans'
           flex="1"
           mr="90px"
           textAlign="center"
+          // bgGradient="linear(to-r, green.200, green.700, green.800)"
+          // bgClip="text"
+          color='black'
+          fontWeight="500"
+          
         >
-          MAI-CHAT
+          MAI CHAT
         </Text>
 
         <div>

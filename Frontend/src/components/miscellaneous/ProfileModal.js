@@ -33,6 +33,8 @@ const ProfileModal = ({ user, children }) => {
             fontFamily="Work sans"
             display="flex"
             justifyContent="center"
+            fontWeight="300"
+            textTransform='uppercase'
           >
             {user.name}
           </ModalHeader>
@@ -57,7 +59,7 @@ const ProfileModal = ({ user, children }) => {
               mt="30px"
               display="flex"
               justifyContent="center"
-              
+              fontWeight="300"
             >
               Email: {user.email}
             </Text>

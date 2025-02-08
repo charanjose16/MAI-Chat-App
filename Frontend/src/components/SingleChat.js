@@ -196,6 +196,7 @@ const sendMessage = async (event) => {
             display="flex"
             justifyContent={{ base: "space-between" }}
             alignItems="center"
+            fontWeight="300"
           >
             <IconButton
               d={{ base: "flex", md: "none" }}

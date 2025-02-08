@@ -59,6 +59,7 @@ const MyChats = ({ fetchAgain }) => {
       w={{ base: "100%", md: "31%" }}
       borderRadius="lg"
       borderWidth="1px"
+      opacity="94%"
     >
       <Box
         pb={3}
@@ -87,7 +88,6 @@ const MyChats = ({ fetchAgain }) => {
         display="flex"
         flexDirection="column"
         p={3}
-        
         bg="#F8F8F8"
         w="100%"
         height="91%"
@@ -100,8 +100,8 @@ const MyChats = ({ fetchAgain }) => {
               <Box
                 onClick={() => setSelectedChat(chat)}
                 cursor="pointer"
-                bg={selectedChat === chat ? "#38B2AC" : "#E8E8E8"}
-                color={selectedChat === chat ? "white" : "black"}
+                bg={selectedChat === chat ? 'green.100' : "#E8E8E8"}
+                color={selectedChat === chat ? "black" : "black"}
                 px={3}
                 py={2}
                 borderRadius="lg"
@@ -113,7 +113,7 @@ const MyChats = ({ fetchAgain }) => {
                     : chat.chatName}
                 </Text>
                 {chat.latestMessage && (
-                  <Text fontSize="xs">
+                  <Text fontSize="xs" color="green">
                     <b>{chat.latestMessage.sender.name} : </b>
                     {chat.latestMessage.content.length > 50
                       ? chat.latestMessage.content.substring(0, 51) + "..."

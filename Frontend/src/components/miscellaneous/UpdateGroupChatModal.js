@@ -224,6 +224,8 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
             fontFamily="Work sans"
             display="flex"
             justifyContent="center"
+            fontWeight='300'
+            textTransform='uppercase'
           >
             {selectedChat.chatName}
           </ModalHeader>
