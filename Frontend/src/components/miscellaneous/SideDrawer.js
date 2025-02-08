@@ -1,4 +1,21 @@
-import { Avatar, Box, Button, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Input, Menu, MenuButton, MenuItem, MenuList, Spinner, Text, Tooltip } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Button,
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
+  Input,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Spinner,
+  Text,
+  Tooltip,
+} from "@chakra-ui/react";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { useDisclosure } from "@chakra-ui/hooks";
 import React, { useState } from "react";
@@ -11,94 +28,93 @@ import ChatLoading from "../ChatLoading";
 import UserListItem from "../userAvatar/UserListItem";
 
 const SideDrawer = () => {
- const [search,setSearch]=useState();
- const [loading,setLoading]=useState(false);
- const [searchResult,setSearchResult]=useState();
- const [loadingChat, setLoadingChat] = useState(false);
+  const [search, setSearch] = useState();
+  const [loading, setLoading] = useState(false);
+  const [searchResult, setSearchResult] = useState();
+  const [loadingChat, setLoadingChat] = useState(false);
 
-   const {
-     setSelectedChat,
-     user,
-     notification,
-     setNotification,
-     chats,
-     setChats,
-   } = ChatState();
+  const {
+    setSelectedChat,
+    user,
+    notification,
+    setNotification,
+    chats,
+    setChats,
+  } = ChatState();
 
   const history = useHistory();
-  const toast=useToast();
+  const toast = useToast();
 
   const logoutHandler = () => {
     localStorage.removeItem("userInfo");
     history.push("/");
   };
 
+  const handleSearch = async () => {
+    if (!search) {
+      toast({
+        title: "Please Enter something in search",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "top-left",
+      });
+      return;
+    }
 
-const handleSearch = async () => {
-  if (!search) {
-    toast({
-      title: "Please Enter something in search",
-      status: "warning",
-      duration: 5000,
-      isClosable: true,
-      position: "top-left",
-    });
-    return;
-  }
+    try {
+      setLoading(true);
 
-  try {
-    setLoading(true);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
 
-    const config = {
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    };
+      const { data } = await axios.get(`/api/user?search=${search}`, config);
 
-    const { data } = await axios.get(`/api/user?search=${search}`, config);
+      setLoading(false);
+      setSearchResult(data);
+    } catch (error) {
+      toast({
+        title: "Error Occured!",
+        description: "Failed to Load the Search Results",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom-left",
+      });
+    }
+  };
 
-    setLoading(false);
-    setSearchResult(data);
-  } catch (error) {
-    toast({
-      title: "Error Occured!",
-      description: "Failed to Load the Search Results",
-      status: "error",
-      duration: 5000,
-      isClosable: true,
-      position: "bottom-left",
-    });
-  }
-};
+  const accessChat = async (userId) => {
+    console.log(userId);
 
-const accessChat = async (userId) => {
-  console.log(userId);
+    try {
+      setLoadingChat(true);
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+      const { data } = await axios.post(`/api/chat`, { userId }, config);
 
-  try {
-    setLoadingChat(true);
-    const config = {
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${user.token}`,
-      },
-    };
-    const { data } = await axios.post(`/api/chat`, { userId }, config);
-
-    if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
-    setSelectedChat(data);
-    setLoadingChat(false);
-    onClose();
-  } catch (error) {
-    toast({
-      title: "Error fetching the chat",
-      description: error.message,
-      status: "error",
-      duration: 5000,
-      isClosable: true,
-      position: "bottom-left",
-    });
-  }
-};
+      if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
+      setSelectedChat(data);
+      setLoadingChat(false);
+      onClose();
+    } catch (error) {
+      toast({
+        title: "Error fetching the chat",
+        description: error.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom-left",
+      });
+    }
+  };
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -127,7 +143,12 @@ const accessChat = async (userId) => {
             onClick={onOpen}
           >
             <i className="fas fa-search"></i>
-            <Text display={{ base: "none", md: "flex" }} px="2">
+            <Text
+              display={{ base: "none", md: "flex" }}
+              px="2"
+              fontWeight="300"
+              fontSize="xl"
+            >
               Search
             </Text>
           </Button>
