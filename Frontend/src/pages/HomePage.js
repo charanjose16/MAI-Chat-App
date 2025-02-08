@@ -27,8 +27,8 @@ useEffect(() => {
         borderWidth="1px"
         shadow="dark-lg"
       >
-        <Text fontSize="3xl" fontFamily="Work sans" fontWeight="400">
-          MAI CHAT APP
+        <Text fontSize="3xl" fontFamily="Work sans" fontWeight="500" color='black.100' opacity='80%'>
+          MAI CHAT
         </Text>
       </Box>
       <Box width="100%" p={4} borderRadius="lg" bg="white" borderWidth="1px" shadow='dark-lg'>
