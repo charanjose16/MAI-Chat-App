@@ -1,40 +1,47 @@
 # MAI-Chat-App
 
 ## Setup Instructions  
-=====================
+=====================  
 Follow these steps to set up and run the application locally:
 
-1. **Clone the repository:**
+1. **Clone the repository:**  
    ```bash
    git clone <repository-url>
    ```
 
-2. **Navigate to the project directory:**
+2. **Navigate to the project directory:**  
    ```bash
    cd MAI-CHAT-APP
    ```
 
-3. **Install backend dependencies:**
+3. **Create a `.env` file in the root project folder** and add the following variables:  
+   ```env
+   PORT=5000
+   MONGO_URI=<Your MongoDB Connection String>
+   JWT_SECRET=<Your JWT Secret>
+   ```
+
+4. **Install backend dependencies:**  
    ```bash
    npm install
    ```
 
-4. **Start the backend server:**
+5. **Start the backend server:**  
    ```bash
    npm start
    ```
 
-5. **Navigate to the frontend directory:**
+6. **Navigate to the frontend directory:**  
    ```bash
    cd frontend
    ```
 
-6. **Install frontend dependencies:**
+7. **Install frontend dependencies:**  
    ```bash
    npm install
    ```
 
-7. **Start the frontend server:**
+8. **Start the frontend server:**  
    ```bash
    npm start
    ```
