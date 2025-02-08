@@ -164,7 +164,7 @@ const sendMessage = async (event) => {
        }
      }, timerLength);
    };
-   
+
    useEffect(() => {
      socket.on("typing", () => {
        console.log("Received 'typing' event");
@@ -204,7 +204,7 @@ const sendMessage = async (event) => {
             />
             {!selectedChat.isGroupChat ? (
               <>
-                {getSender(user, selectedChat.users)}
+                {getSender(user, selectedChat.users).toUpperCase()}
                 <ProfileModal user={getSenderFull(user, selectedChat.users)} />
               </>
             ) : (

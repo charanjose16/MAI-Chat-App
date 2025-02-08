@@ -101,7 +101,7 @@ const Login = () => {
         Login
       </Button>
       ̥
-      <Button
+      {/* <Button
         w="100%"
         colorScheme='teal'
         style={{ marginTop: "15px" }}
@@ -109,7 +109,7 @@ const Login = () => {
         setPassword("123456");}}
       >
         Get Guest User Credentials
-      </Button>
+      </Button> */}
       ̥
     </VStack>
   );
