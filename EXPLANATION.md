@@ -31,6 +31,7 @@
 
 ## Introduction  
 ============
+
 This project implements a **real-time chat application** using **WebSockets** for communication between clients and the server. It supports features such as:  
 - User authentication  
 - Private messaging  
